@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="admin.master.cs" Inherits="admin_admin" %>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="admin.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery.js"></script>
+      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style type="text/css">
+        .adminAna {
+            float:right;
+            color:white;
+            margin-right:20px;
+            height:50px;
+        }
+
+        .adminAna a {
+            color:white;
+            
+        }
+
+
+        .cikis{
+            background-color:red;
+            width:50px;
+            height:20px;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#firstpane p.menu_head").click(function () {
+                $(this).css({}).next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("fast");
+                $(this).siblings().css({});
+            });
+            $("#secondpane p.menu_head").mouseover(function () {
+                $(this).css({}).next("div.menu_body").slideDown(500).siblings("div.menu_body").slideUp("fast");
+                $(this).siblings().css({});
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="header">
+            <div id="logo"><a href="../admin/adminpanel.aspx">Admin <span>Paneli</span></a></div>
+            <div class="adminAna">
+                    <a href="../default.aspx"><i class="fa fa-home"></i> Ana Sayfa</a><br />
+                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Çıkış<i class="fa fa-arrow-right"></i></asp:LinkButton>
+                   </div>
+        </div>
+
+        <div id="container">
+            <div id="sol">
+
+                <div id="firstpane" class="menu_list">
+                    <p class="menu_head"><i class="fa fa-bars"></i> Kategoriler</p>
+                    <div class="menu_body">
+                        <a href="../admin/kategoriEkle.aspx"><i class="fa fa-plus"></i> Kategori Ekleme</a>
+                        <a href="../admin/kategoriDuzenle.aspx"><i class="fa fa-edit"></i> Kategori Düzenleme</a>
+
+                    </div>
+                    <p class="menu_head"><i class="fa fa-pencil"></i> Yazılar</p>
+                    <div class="menu_body">
+                        <a href="../admin/makaleEkle.aspx"><i class="fa fa-plus"></i> Yazı Ekle</a>
+                        <a href="../admin/makaleduzenle.aspx"><i class="fa fa-edit"></i> Yazı Düzenle</a>
+                    </div>
+                    <p class="menu_head"><i class="fa fa-comment"></i> Yorumlar</p>
+                    <div class="menu_body">
+                        
+                        <a href="../admin/yorumlar.aspx"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Onay Bekleyenler</a>
+                        <a href="../admin/onaylanmisyorum.aspx"><i class="fa fa-check" aria-hidden="true"></i> Onaylanmış Yorumlar</a>
+                    </div>
+                    <a href="mesajlar.aspx"><p class="menu_head"><i class="fa fa-envelope"></i> Mesajlar</p></a>
+                    
+                    
+
+
+                </div>
+
+            </div>
+
+
+            <div id="sag">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+
+
+    </form>
+</body>
+</html>
+

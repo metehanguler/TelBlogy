@@ -1,0 +1,171 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="kullanici.master.cs" Inherits="kullanici" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="kullanici.css" rel="stylesheet" />
+    <title></title>
+    <script src="sliderJS/jquery.js"></script>
+    <script src="sliderJS/amazingslider.js"></script>
+    <link rel="stylesheet" type="text/css" href="sliderJS/amazingslider-1.css" />
+    <script src="sliderJS/initslider-1.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .araText {
+            width: 200px;
+            height: 30px;
+            background-color: #f6f6f6;
+            border-radius: 5px;
+            margin: 7px;
+            color: #000000;
+            font-weight: 200;
+            transition: all .2s;
+            border: 0;
+            padding: 3px;
+        }
+
+        .fa-search {
+            color: white;
+        }
+
+        .grid {
+            margin: 20px auto;
+            width: 90%;
+            height: 320px;
+        }
+
+        .grid-ic img {
+            width: 20%;
+            margin: 10px;
+            float: left;
+            opacity: 1;
+            box-shadow: -2px 2px 6px 2px #CCCED0;
+        }
+
+        .grid-ic #DataList2_Image2_0 {
+            width: calc(60% - 20px);
+            height: 340px;
+            float: left;
+        }
+
+            .grid-ic #DataList2_Image2_0:hover, #DataList2_Image2_1:hover, #DataList2_Image2_2:hover, #DataList2_Image2_3:hover, #DataList2_Image2_4:hover {
+                opacity: 0.8;
+            }
+
+
+        .grid-ic #DataList2_Image2_1 {
+            width: calc(20% - 20px);
+            height: 160px;
+            float: left;
+        }
+
+        .grid-ic #DataList2_Image2_2 {
+            width: calc(20% - 20px);
+            height: 160px;
+            float: left;
+        }
+
+        .grid-ic #DataList2_Image2_3 {
+            width: calc(20% - 20px);
+            height: 160px;
+            float: left;
+        }
+
+        .grid-ic #DataList2_Image2_4 {
+            width: calc(20% - 20px);
+            height: 160px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="wrapper">
+            <div id="banner">
+                <h1>#Teknoblogy</h1>
+            </div>
+            <div id="navigation">
+                <ul id="nav">
+                    <li>
+                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Default.aspx">#AnaSayfa</asp:HyperLink></li>
+                    <li>
+                        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/hakkimizda.aspx">#Hakkımızda</asp:HyperLink></li>
+                    <li>
+                        <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/iletisim.aspx">#İletişim</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/admin/Default.aspx">#Yönetim</asp:HyperLink>
+                    </li>
+                    <li></li>
+                </ul>
+                <div id="aramabtn" style="float: right; margin-right: 80px;">
+                    <asp:TextBox ID="textBox1" runat="server" CssClass="araText" placeholder="Ara"></asp:TextBox>
+                    <asp:LinkButton ID="btnExample" runat="server" Text="<i class='fa fa-search'></i>" CssClass="btn btn-primary btn-xs" OnClick="btnExample_Click"></asp:LinkButton>
+                    <%--<a href="aramadetay.aspx?arama" + ><i class="fa fa-search"></i></a>--%>
+                </div>
+            </div>
+            <div class="grid">
+                <asp:DataList ID="DataList2" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <ItemTemplate>
+                        <div class="grid-ic">
+                            <a href="/makaledetay.aspx?makaleID=<%#Eval("makaleID") %>">
+                                <asp:Image ID="Image2" runat="server" ImageUrl='<%# Eval("makaleResim") %>' /></a>
+                        </div>
+                    </ItemTemplate>
+                </asp:DataList>
+            </div>
+            <div id="govde">
+                <div id="govdesol">
+                    <div class="govdesolbaslik"><i class="fa fa-star" aria-hidden="true"></i>Popüler İçerikler</div>
+                    <div class="govdesolicerik">
+                        <asp:DataList ID="dtl_populer" runat="server">
+                            <ItemTemplate>
+                                <div style="width: 300px; height: 100px; margin-top: 25px;">
+                                    <div id="dtlsol" style="width: 80px; height: 80px; float: left;">
+                                        <a href="makaledetay.aspx?makaleID=<%#Eval("makaleID") %>">
+                                            <asp:Image ID="Image1" runat="server" Height="80px" ImageUrl='<%# Eval("makaleResim") %>' Width="80px" /></a>
+                                    </div>
+                                    <div style="float: left; margin-left: 20px; font-weight: bold; width: 200px; height: 80px; font-size: 14px; margin-bottom: 5px;">
+                                        <div style="height: 60px; overflow: hidden;">
+                                            <a href="makaledetay.aspx?makaleID=<%#Eval("makaleID") %>">
+                                                <asp:Literal ID="Literal1" runat="server" Text='<%# Eval("makaleBaslik") %>'></asp:Literal></a>
+                                        </div>
+                                        <div style="height: 20px; font-size: 12px; margin-top: 8px; color: #808080; font-weight: 100;">
+                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("makaleTarih","{0:dd MMMM yyyy}") %>'></asp:Label>
+                                            |
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("makaleOkunma") %>'></asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:DataList>
+                    </div>
+                    <div class="govdesolbaslik"><i class="fa fa-tags" aria-hidden="true"></i>Kategoriler</div>
+                    <div class="govdesolicerik">
+                        <asp:DataList ID="dtl_kategori" runat="server">
+                            <ItemTemplate>
+                                <div style="height: 60px; width: 100%; margin-left: 20px;">
+                                    <a href="kategoridetay.aspx?kategoriID=<%#Eval("kategoriID") %>">
+                                        <asp:Literal ID="Literal1" runat="server" Text='<%# Eval("kategoriAd") %>'></asp:Literal></a>
+                                </div>
+                            </ItemTemplate>
+                        </asp:DataList>
+                    </div>
+                </div>
+                <div id="govdesag">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="alt">
+                © Teknoblogy 2016
+            </div>
+        </div>
+    </form>
+</body>
+</html>
